@@ -11,22 +11,16 @@ namespace StreamInputOutput
     {
         static void Main(string[] args)
         {
+            string filePath = "data.txt";
             Console.WriteLine("Name: ");
             string name = Console.ReadLine();
             Console.WriteLine("Email: ");
             string email = Console.ReadLine();
             string data = name + ":" + email;
-            FileInfo fileinfo = new FileInfo("clients.txt");
-            using (StreamWriter streamWriter = fileinfo.AppendText())
-            {
-                streamWriter.WriteLine(data);
-                streamWriter.Flush();
-            }
 
-            using (StreamReader streamReader = new StreamReader(fileinfo.FullName))
-            {
-                Console.WriteLine(streamReader.ReadToEnd());
-            }
+            StreamWork.WriteFile(filePath, data);
+            StreamWork.ReadFile(filePath);
+           
             Console.ReadKey();
         }
     }
